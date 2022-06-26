@@ -25,7 +25,7 @@ print_hello:
 #    - checkout
     - run:
         name: "affiche bonjour"
-        commands: |
+        command: |
           echo "bonjour"
 print_world:
   docker:
@@ -34,12 +34,12 @@ print_world:
 #    - checkout
     - run:
         name: "affiche monde"
-        commands: |
+        command: |
           echo "monde"
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  welcome:
     jobs:
 #      - say-hello
       - print_hello
