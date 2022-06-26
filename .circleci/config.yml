@@ -22,7 +22,7 @@ print_hello:
   docker:
     - image: circleci/node:13.8.0
   steps:
-    - checkout
+#    - checkout
     - run
   #      name: "affiche bonjour"
         commands: |
@@ -31,7 +31,7 @@ print_world:
   docker:
     - image: circleci/node:13.8.0
   steps:
-    - checkout
+#    - checkout
     - run
   #      name: "affiche monde"
         commands: |
