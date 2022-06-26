@@ -23,8 +23,8 @@ print_hello:
     - image: circleci/node:13.8.0
   steps:
 #    - checkout
-    - run
-  #      name: "affiche bonjour"
+    - run:
+        name: "affiche bonjour"
         commands: |
           echo "bonjour"
 print_world:
@@ -32,8 +32,8 @@ print_world:
     - image: circleci/node:13.8.0
   steps:
 #    - checkout
-    - run
-  #      name: "affiche monde"
+    - run:
+        name: "affiche monde"
         commands: |
           echo "monde"
 # Invoke jobs via workflows
