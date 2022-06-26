@@ -24,7 +24,7 @@ print_hello:
   steps:
     - checkout
     - run
-      name: affiche bonjour
+      name: "affiche bonjour"
       commands: |
         echo "bonjour"
 print_world:
@@ -33,7 +33,7 @@ print_world:
   steps:
     - checkout
     - run
-      name: affiche monde
+      name: "affiche monde"
       commands: |
         echo "monde"
 # Invoke jobs via workflows
@@ -47,4 +47,3 @@ workflows:
           requires:
             - print_hello
 
-            
