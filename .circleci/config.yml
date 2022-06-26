@@ -16,7 +16,18 @@ jobs:
       - checkout
       - run:
           name: "Say hello"
-          command: "echo Hello, World!"
+          command: "echo Hello,"
+
+  print_world:
+    docker:
+      - image: alpine:latest
+  # Add steps to the job
+  # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    steps:
+      - checkout
+      - run:
+          name: "Say world"
+          command: "echo World!"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -24,3 +35,6 @@ workflows:
   welcome:
     jobs:
       - print_hello
+      - print_world:
+          requires:
+            - print_hello
