@@ -24,18 +24,18 @@ print_hello:
   steps:
     - checkout
     - run
-      name: "affiche bonjour"
-      commands: |
-        echo "bonjour"
+        name: "affiche bonjour"
+        commands: |
+          echo "bonjour"
 print_world:
   docker:
     - image: circleci/node:13.8.0
   steps:
     - checkout
     - run
-      name: "affiche monde"
-      commands: |
-        echo "monde"
+        name: "affiche monde"
+        commands: |
+          echo "monde"
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
