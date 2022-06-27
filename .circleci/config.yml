@@ -33,7 +33,7 @@ workflows:
   welcome:
     jobs:
       - save_hello_world_output
-      - print_hello_world
+      - print_hello_world:
           requires:
             - save_hello_world_output
       - print_output_file:
