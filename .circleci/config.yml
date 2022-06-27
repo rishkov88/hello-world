@@ -6,7 +6,7 @@ jobs:
       - image: alpine:latest
     steps:
       - run:
-          command: touch ~/output.txt
+          command: echo "hello, world!" > ~/output.txt
       - persist_to_workspace:
           root: ~/
           paths:
@@ -22,46 +22,10 @@ jobs:
           name: "print content"
           command: cat ~/output.txt
 
-  print_hello:
-    docker:
-      - image: alpine:latest
-    steps:
-      - checkout
-      - run:
-          name: "Say hello"
-          command: echo "Hello, my dear!" > ~/output.txt
-
-  print_world:
-    docker:
-      - image: alpine:latest
-    steps:
-      - checkout
-      - run:
-          name: "Say world"
-          command: "echo World!"
-
-
-  print_myname:
-    docker:
-      - image: cimg/base:2020.01
-    steps:
-      - run:
-          name: "env_var"
-          command: |
-              echo "${ENVIRO} et ${ENVIRO1}"
-
 workflows:
   welcome:
     jobs:
       - save_hello_world_output
-      - print_hello:
-          requires:
-          - save_hello_world_output
-      - print_world:
-          requires:
-            - print_hello
       - print_output_file:
           requires:
-            - print_hello
-            - print_world
-      - print_myname
+            - save_hello_world_output
