@@ -9,6 +9,8 @@ jobs:
             - output.txt
 
   print_output_file:
+        docker:
+      - image: alpine:latest
       - attach_workspace:
           at: /tmp/workspace
       - run:
