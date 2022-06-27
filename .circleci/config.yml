@@ -25,4 +25,3 @@ workflows:
   welcome:
     jobs:
       - use_parameter
-      -  task_error
