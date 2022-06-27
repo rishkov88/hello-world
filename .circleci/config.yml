@@ -12,6 +12,16 @@ jobs:
           paths:
             - output.txt
 
+  print_hello_world:
+    docker:
+      - image: alpine:latest
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: "print content"
+          command: echo "hello, world!" > ~/output.txt
+
   print_output_file:
     docker:
       - image: alpine:latest
@@ -21,13 +31,6 @@ jobs:
       - run:
           name: "print content"
           command: cat ~/output.txt
-  print_hello_world:
-    docker:
-      - image: alpine:latest
-    steps:
-      - run:
-          name: "print content"
-          command: echo "hello, world!" > ~/output.txt
 
 workflows:
   welcome:
