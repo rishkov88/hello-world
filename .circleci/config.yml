@@ -2,13 +2,9 @@ version: 2.1
 
 commands:
   print_pipeline_id:
-    parameter:
-      id:
-        type: string
-        default: ${CIRCLE_WORKFLOW_ID}
     steps:
       - run:
-          command: echo <<parameter.id>>
+          command: echo " l'id du pipelise est ${CIRCLE_WORKFLOW_ID}"
 
 default: &default
     docker:
