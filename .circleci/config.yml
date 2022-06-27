@@ -5,8 +5,6 @@ jobs:
     docker:
       - image: alpine:latest
     steps:
-      - run:
-          command: echo "hello, world!" > ~/output.txt
       - persist_to_workspace:
           root: ~/
           paths:
@@ -21,11 +19,21 @@ jobs:
       - run:
           name: "print content"
           command: cat ~/output.txt
+  print_hello_world:
+    docker:
+      - image: alpine:latest
+    steps:
+      - run:
+          name: "print content"
+          command: echo "hello, world!" > ~/output.txt
 
 workflows:
   welcome:
     jobs:
+      - print_hello_world
       - save_hello_world_output
+          requires:
+            - print_hello_world
       - print_output_file:
           requires:
             - save_hello_world_output
