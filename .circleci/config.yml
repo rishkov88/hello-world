@@ -1,9 +1,11 @@
 version: 2.1
 
 jobs:
-  save_hello_world_output:
+  default: &defaults
     docker:
       - image: alpine:latest
+  save_hello_world_output:
+    <<: *defaults
     steps:
       - run:
           command: echo "hello, world!" > ~/output.txt
@@ -13,8 +15,7 @@ jobs:
             - output.txt
 
   print_output_file:
-    docker:
-      - image: alpine:latest
+    <<: *defaults
     steps:
       - attach_workspace:
           at: ~/
@@ -23,8 +24,7 @@ jobs:
           command: cat ~/output.txt
 
   print_output_files:
-    docker:
-      - image: alpine:latest
+    <<: *defaults
     steps:
       - attach_workspace:
           at: ~/
