@@ -6,12 +6,11 @@ commands:
       - run:
           command: echo " l'id du pipelise est ${CIRCLE_WORKFLOW_ID}"
 
-jobs:
-
-  default: &default
+default: &default
     docker:
       - image: alpine:latest
 
+jobs:
   use_parameter:
     <<: *default
     steps:
