@@ -5,6 +5,8 @@ jobs:
     docker:
       - image: alpine:latest
     steps:
+      - run:
+          command: touch ~/output.txt
       - persist_to_workspace:
           root: ~/
           paths:
@@ -30,10 +32,10 @@ jobs:
 workflows:
   welcome:
     jobs:
-      - print_hello_world
       - save_hello_world_output
+      - print_hello_world
           requires:
-            - print_hello_world
+            - save_hello_world_output
       - print_output_file:
           requires:
             - save_hello_world_output
