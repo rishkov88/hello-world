@@ -41,7 +41,7 @@ workflows:
       - print_output_file:
           requires:
             - save_hello_world_output
-      - 1print_output_files:
+      - print_output_files:
           requires:
             - save_hello_world_output
             
