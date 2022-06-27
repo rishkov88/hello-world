@@ -22,7 +22,7 @@ jobs:
           name: "print content"
           command: cat ~/output.txt
 
-  1print_output_file:
+  print_output_files:
     docker:
       - image: alpine:latest
     steps:
@@ -41,7 +41,7 @@ workflows:
       - print_output_file:
           requires:
             - save_hello_world_output
-      - 1print_output_file:
+      - 1print_output_files:
           requires:
             - save_hello_world_output
             
