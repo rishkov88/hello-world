@@ -15,8 +15,17 @@ jobs:
     <<: *default
     steps:
       - print_pipeline_id
+      - return 1
+  task_error:
+    <<: *default
+    steps:
+      - run:
+          command: echo "vous avez une erreur :("
+          when: on_fail
+  
 
 workflows:
   welcome:
     jobs:
       - use_parameter
+      -  task_error
