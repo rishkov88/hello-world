@@ -5,6 +5,8 @@ jobs:
     docker:
       - image: alpine:latest
     steps:
+      - run:
+          command: touch ~/output.txt
       - persist_to_workspace:
           root: ~/
           paths:
