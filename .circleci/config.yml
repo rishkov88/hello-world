@@ -2,6 +2,8 @@ version: 2.1
 
 jobs:
   save_hello_world_output:
+    docker:
+      - image: alpine:latest
     steps:
       - persist_to_workspace:
           root: /tmp/workspace
@@ -9,8 +11,9 @@ jobs:
             - output.txt
 
   print_output_file:
-        docker:
+    docker:
       - image: alpine:latest
+    steps:
       - attach_workspace:
           at: /tmp/workspace
       - run:
