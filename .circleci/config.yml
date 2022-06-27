@@ -22,11 +22,26 @@ jobs:
           name: "print content"
           command: cat ~/output.txt
 
+  1print_output_file:
+    docker:
+      - image: alpine:latest
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: "print content"
+          command: |
+            echo "bonjour!!!" > ~/output.txt
+            cat ~/output.txt
+
 workflows:
   welcome:
     jobs:
       - save_hello_world_output
       - print_output_file:
+          requires:
+            - save_hello_world_output
+      - 1print_output_file:
           requires:
             - save_hello_world_output
             
