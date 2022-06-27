@@ -11,6 +11,7 @@ default: &default
       - image: alpine:latest
 
 jobs:
+
   use_parameter:
     <<: *default
     steps:
