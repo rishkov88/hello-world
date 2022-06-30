@@ -1,11 +1,11 @@
 version: 2.1
 
-docker: &docker
+default: &default
 
 jobs:
 
   save_hello_world_output:
-    <<: *docker
+    <<: *default
     steps:
       - run:
           command: | 
@@ -18,7 +18,7 @@ jobs:
             - ~/ansible/
 
   print_output_file:
-    <<: *docker
+    <<: *default
     steps:
       - attach_workspace:
           at: ~/
@@ -27,7 +27,7 @@ jobs:
           command: cat ~/output.txt && cat ~/ansible/inventory.txt
 
   print_output_files:
-    <<: *docker
+    <<: *default
     steps:
       - attach_workspace:
           at: ~/
@@ -38,7 +38,7 @@ jobs:
             cat ~/output.txt
 
   write_inventory:
-    <<: *docker
+    <<: *default
     steps:
       - attach_workspace:
           at: ~/
