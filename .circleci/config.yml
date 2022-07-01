@@ -3,6 +3,9 @@ version: 2.1
 default: &default
     docker:
       - image: alpine:latest
+aws_cli: &aws_cli
+    docker:
+      - image: amazon/aws-cli:latest
 
 jobs:
 
