@@ -51,8 +51,7 @@ jobs:
           name: "write in ansible inventory file"
           command: |
               echo "[all]" > ~/inventory.txt
-              aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' \
-              --filters "Name=tag:Project,Values=udacity" --output text >> inventory.txt
+              aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' --output text >> inventory.txt
 
 workflows:
   welcome:
