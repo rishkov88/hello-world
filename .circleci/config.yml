@@ -43,7 +43,7 @@ jobs:
             cat ~/output.txt
 
   write_inventory:
-    <<: *default
+    <<: *aws_cli
     steps:
       - attach_workspace:
           at: ~/
