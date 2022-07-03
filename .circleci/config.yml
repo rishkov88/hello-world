@@ -5,6 +5,7 @@ default: &default
       - image: python:3.10-slim-buster
 
 jobs:
+
     deploy_server:
         <<: *default
         steps:
@@ -18,9 +19,7 @@ jobs:
         - run:
             name: run playbook
             command: |
-                ansible-playbook .circleci/main.yml -i .circleci/inventory.yml
-          
-  
+                ansible-playbook .circleci/main.yml -i .circleci/inventory.yml 
 
 workflows:
     ansible_workflow:
