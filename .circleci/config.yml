@@ -1,27 +1,27 @@
 version: 2.1
 
-commands:
-  print_pipeline_id:
-    steps:
-      - run:
-          command: echo " l'id du pipelise est ${CIRCLE_WORKFLOW_ID}"
-
 default: &default
     docker:
-      - image: alpine:latest
+      - image: python:3.10-slim-buster
 
 jobs:
-  use_parameter:
-    <<: *default
-    steps:
-      - print_pipeline_id
-      - run: echo " l'id du pipelise est ${CIRCLE_WORKFLOW_ID:0:5}"
-      - run:
-          command: echo "vous avez une erreur :("
-          when: on_fail
+    deploy_server:
+        <<: *default
+        steps:
+        - add_ssh_keys: 
+            fingerprints: ["a0:90:56:ec:16:18:ea:a0:27:29:dc:8c:23:c4:37:da"]
+        - run:
+            name: install ansible
+            command: |
+                apt-get install ansible -y
+        -run:
+            name: run playbook
+            command: |
+                ansible-playbook main.yml -i inventory.yml
+          
   
 
 workflows:
-  welcome:
-    jobs:
-      - use_parameter
+    ansible_workflow:
+      jobs:
+        - deploy_server
