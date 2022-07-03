@@ -14,7 +14,7 @@ jobs:
             name: install ansible
             command: |
                 apt-get install ansible -y
-        -run:
+        - run:
             name: run playbook
             command: |
                 ansible-playbook main.yml -i inventory.yml
