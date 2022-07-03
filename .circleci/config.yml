@@ -1,70 +1,27 @@
 version: 2.1
 
+commands:
+  print_pipeline_id:
+    steps:
+      - run:
+          command: echo " l'id du pipelise est ${CIRCLE_WORKFLOW_ID}"
+
 default: &default
     docker:
       - image: alpine:latest
-aws_cli: &aws_cli
-    docker:
-      - image: amazon/aws-cli:latest
 
 jobs:
-
-  save_hello_world_output:
+  use_parameter:
     <<: *default
     steps:
+      - print_pipeline_id
+      - run: echo " l'id du pipelise est ${CIRCLE_PROJECT_REPONAME}"
       - run:
-          command: | 
-              echo "hello, world!" > ~/output.txt
-              mkdir ~/ansible/
-      - persist_to_workspace:
-          root: ~/
-          paths:
-            - output.txt
-            - ansible/
-
-  print_output_file:
-    <<: *default
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run:
-          name: "print content"
-          command: cat ~/output.txt && cat ~/ansible/inventory.txt
-
-  print_output_files:
-    <<: *default
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run:
-          name: "print content"
-          command: |
-            echo "bonjour!!!" > ~/output.txt
-            cat ~/output.txt
-
-  write_inventory:
-    <<: *aws_cli
-    steps:
-      - attach_workspace:
-          at: ~/
-      - run:
-          name: "write in ansible inventory file"
-          command: |
-              echo "[all]" > ~/inventory.txt
-              aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' --output text >> inventory.txt
+          command: echo "vous avez une erreur :("
+          when: on_fail
+  
 
 workflows:
   welcome:
     jobs:
-      - save_hello_world_output
-      - write_inventory:
-          requires:
-            - save_hello_world_output
-      - print_output_file:
-          requires:
-            - save_hello_world_output
-            - write_inventory
-      - print_output_files:
-          requires:
-            - save_hello_world_output
-            
+      - use_parameter
