@@ -17,7 +17,7 @@ jobs:
         - run:
             name: run playbook
             command: |
-                ansible-playbook main.yml -i inventory.yml
+                ansible-playbook .circleci/main.yml -i .circleci/inventory.yml
           
   
 
