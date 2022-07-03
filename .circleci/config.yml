@@ -8,6 +8,7 @@ jobs:
     deploy_server:
         <<: *default
         steps:
+        - checkout
         - add_ssh_keys: 
             fingerprints: ["a0:90:56:ec:16:18:ea:a0:27:29:dc:8c:23:c4:37:da"]
         - run:
