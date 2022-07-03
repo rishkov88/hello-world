@@ -15,7 +15,7 @@ jobs:
     <<: *default
     steps:
       - print_pipeline_id
-      - run: echo " l'id du pipelise est ${CIRCLE_PROJECT_REPONAME}"
+      - run: echo " l'id du pipelise est ${CIRCLE_WORKFLOW_ID:0:5}"
       - run:
           command: echo "vous avez une erreur :("
           when: on_fail
